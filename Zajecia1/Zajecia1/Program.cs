@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.VisualBasic.CompilerServices;
+
 public class Program
 {
     public static void Main(string[] args) {
@@ -11,6 +12,16 @@ public class Program
         for (int i = 0; i < arr.Length; i++) {
             Console.WriteLine(arr[i]);
         }
+    }
+
+    public static int maxValue(int[] arr) {
+        int max = -1;
+        
+        for(int i = 0; i < arr.Length; i++)
+            if (arr[i] > max)
+                max = arr[i];
+
+        return max;
     }
     
 }

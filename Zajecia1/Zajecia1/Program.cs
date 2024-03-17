@@ -14,7 +14,7 @@ public class Program
         }
     }
 
-    public static int maxValue(int[] arr) {
+    public static int MaxValue(int[] arr) {
         int max = -1;
         
         for(int i = 0; i < arr.Length; i++)

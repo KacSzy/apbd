@@ -7,11 +7,14 @@ public class Program
         Console.WriteLine("Modyfikacja 3");
     }
 
-    public static void CalculateAvg(int[] arr) {
+    public static double CalculateAvg(int[] arr) {
         Console.WriteLine("CalculateAvg");
+        double sum = 0;
         for (int i = 0; i < arr.Length; i++) {
-            Console.WriteLine(arr[i]);
+            sum += arr[i];
         }
+
+        return sum / arr.Length;
     }
 
     public static int MaxValue(int[] arr) {

@@ -10,7 +10,7 @@ public class Program
     public static void CalculateAvg(int[] arr) {
         Console.WriteLine("CalculateAvg");
         for (int i = 0; i < arr.Length; i++) {
-            Console.WriteLine(arr[i]);
+            Console.WriteLine(i);
         }
     }
 

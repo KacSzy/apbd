@@ -1,3 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿namespace zajecia2;
 
-Console.WriteLine("Hello, World!");
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        
+        
+        
+        Console.Write("Hello Si Hasz");
+        
+    }
+    
+}

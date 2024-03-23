@@ -1,4 +1,5 @@
-﻿using zajecia2.Containers;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using zajecia2.Containers;
 
 namespace zajecia2;
 
@@ -57,10 +58,94 @@ public class ContainerShip
         }
         
     }
+
+    public void removeContainer(Container container)
+    {
+        if (containers.Contains(container)) {
+            containers.Remove(container);
+            currContainers--;
+            currContainerWeight -= container.GetWeightWithCargo();
+        }
+        else {
+            Console.WriteLine("Nie ma takiego kontenera na statku");
+        }
+    }
+
+    public void removeContainer()
+    {
+        List<String> indexes = new List<string>();
+        for (int i = 0; i < containers.Count; i++) {
+            Console.WriteLine(i + " - " + containers[i].GetSerialNumber());
+            indexes.Add(i.ToString());
+        }
+
+        bool isGood = false;
+        int index = 0;
+        while (!isGood) {
+            Console.Write("> ");
+            String line = Console.ReadLine();
+            if (indexes.Contains(line)) {
+                index = int.Parse(line);
+                isGood = true;
+            }
+        }
+
+        Container container = containers[index];
+        currContainers--;
+        currContainerWeight -= container.GetWeightWithCargo();
+        containers.Remove(container);
+    }
+
+    public void switchContainers(Container container)
+    {
+        removeContainer();
+        containers.Add(container);
+        currContainers++;
+        currContainerWeight += container.GetWeightWithCargo();
+    }
+
+    public void moveContainer(ContainerShip containerShip)
+    {
+        List<String> indexes = new List<string>();
+        for (int i = 0; i < containers.Count; i++) {
+            Console.WriteLine(i + " - " + containers[i].GetSerialNumber());
+            indexes.Add(i.ToString());
+        }
+
+        bool isGood = false;
+        int index = 0;
+        while (!isGood) {
+            Console.Write("> ");
+            String line = Console.ReadLine();
+            if (indexes.Contains(line)) {
+                index = int.Parse(line);
+                isGood = true;
+            }
+            
+        }
+
+        if (containerShip.CheckContainerBeforeAdding(containers[index])) {
+            containerShip.addContainer(containers[index]);
+            this.removeContainer(containers[index]);
+        }
+        else {
+            Console.WriteLine("Nie mozna przeniesc tego kontenera.");
+        }
+        
+    }
+
+    public bool CheckContainerBeforeAdding(Container container)
+    {
+        if (this.currContainerWeight + container.GetWeightWithCargo() > maxContainersWeight)
+            return false;
+        if (currContainers + 1 > maxContainers)
+            return false;
+        return true;
+    }
+    
+    
     
     //todo
-    //usuniecie kontenera ze statku, rozladowanie kontenera, zastapienie kontenera ze statku o danym numerze innym kontenerem
-    //mozliwosc przeniesienia kontenera miedzy dwoma statkami 
     //wypisanie informacji o danym kontenerze
     //wypisanie informacji o danym statku i jego ladnuku
     //dokonczyc cooling container

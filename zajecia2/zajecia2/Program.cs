@@ -1,14 +1,12 @@
-﻿namespace zajecia2;
+﻿using zajecia2.Containers;
+
+namespace zajecia2;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        
-        
-        
-        Console.Write("Hello Si Hasz");
-        
+        CoolingContainer.LoadProducts();
     }
     
 }

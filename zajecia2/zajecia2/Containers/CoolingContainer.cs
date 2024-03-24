@@ -5,11 +5,11 @@ namespace zajecia2.Containers;
 public class CoolingContainer: Container, IHazardNotifier
 {
     
-    private string type;
+    private string currType;
     private double temperature;
     private static Dictionary<string, double> products = new Dictionary<string, double>();
 
-    public static void LoadProducts()
+    private static void LoadProducts()
     {
         products.Add("Bananas", 13.3);
         products.Add("Chocolate", 18.0);
@@ -26,15 +26,52 @@ public class CoolingContainer: Container, IHazardNotifier
     public CoolingContainer(double weight, double height, double depth, double maxCapacity) : base(weight, height, depth, maxCapacity)
     {
         SetSerialNumber("KON-C-" + GetId());
+        if(!products.Any())
+            LoadProducts();
     }
 
     public override void Load(double cargo)
     {
-        
+        List<String> indexes = new List<string>();
+
+        int i = 0;
+        foreach (var mapEntry in products) {
+            Console.WriteLine(i + " - " + mapEntry.Key);
+            indexes.Add(i.ToString());
+        }
+
+        bool isGood = false;
+        int index = 0;
+        while (!isGood) {
+            Console.Write("> ");
+            String line = Console.ReadLine();
+            if (indexes.Contains(line)) {
+                index = int.Parse(line);
+                isGood = true;
+            }
+        }
+
+        i = 0;
+        foreach (var mapEntry in products) {
+            if (i == index) {
+                if (cargo < this.GetMaxCapacity()) {
+                    this.AddCargo(cargo);
+                    currType = mapEntry.Key;
+                    temperature = mapEntry.Value;
+                    return;
+                }
+                else {
+                    Console.WriteLine("Too much cargo");
+                    return;
+                }
+            }
+        }
     }
 
     public override void EmptyContainer()
     {
-        
+        ResetWeightWithCargo(0);
+        currType = "";
+        temperature = 15;
     }
 }

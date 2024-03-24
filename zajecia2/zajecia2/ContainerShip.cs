@@ -142,14 +142,13 @@ public class ContainerShip
             return false;
         return true;
     }
-    
-    
-    
-    //todo
-    //wypisanie informacji o danym kontenerze
-    //wypisanie informacji o danym statku i jego ladnuku
-    //dokonczyc cooling container
-    //ewentualnie konsola
-    
-    
+
+    public override string ToString()
+    {
+        string result = "This ship's max speed is " + maxSpeed + ". " +
+                        "It has " + currContainers + "/" + maxContainers + "containers" +
+                        "and it weights " + currContainerWeight + "/" + maxContainersWeight + "kg.";
+        
+        return result;
+    }
 }

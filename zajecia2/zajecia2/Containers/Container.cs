@@ -64,6 +64,17 @@ public abstract class Container
         weightWithCargo = weight + cargo;
     }
 
+    public double GetMaxCapacity()
+    {
+        return maxCapacity;
+    }
+    
+    public override string ToString()
+    {
+        string result = this.GetSerialNumber() + " - " + this.GetWeightWithCargo() + "/" + this.GetMaxCapacity();
+        return result;
+    }
+
 }
 
 

@@ -30,6 +30,10 @@ public class GasContainer: Container, IHazardNotifier
         if (isGood) {
             AddCargo(cargo);
         }
+        Console.WriteLine("Podaj cisnienie ładunku: ");
+        Console.Write("> ");
+        string pres = Console.ReadLine();
+        this.preassure = Convert.ToDouble(pres);
     }
 
     public override void EmptyContainer()

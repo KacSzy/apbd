@@ -65,4 +65,5 @@ public class LiquidContainer: Container, IHazardNotifier
     {
         return isDangerous;
     }
+
 }
